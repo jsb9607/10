@@ -1,23 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if 1
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+#else
+void swap(int a, int b)
+{
+	int temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+#endif
+
 
 int main(int argc, char *argv[]) {
 
-	int i = 10;
-	char c = 'a';
-	int *iptr;	
-	int *iptr2;
-	char *cptr;
+	int a = 3;
+	int b = 5;
 
-	iptr = &i;
-	cptr = &c;
-	iptr2 = iptr;
-
-	printf("i: %p\n%p (size:%i)\n", iptr, &i, sizeof(iptr));	
-	printf("c: %p\n%p (size:%i)\n", cptr, &c, sizeof(cptr));	
-	printf("iptr2 : %p, %i\n", iptr2, *iptr2);
-
+	#if 1
+	swap(&a, &b);
+	#else	
+	swap(a, b);
+	#endif
+	
+	printf("a : %i, b : %i\n", a, b);
+	
 	return 0;
 }
 
