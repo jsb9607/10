@@ -1,37 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if 1
-void swap(int *a, int *b)
-{
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
-#else
-void swap(int a, int b)
-{
-	int temp;
-	temp = a;
-	a = b;
-	b = temp;
-}
-#endif
-
-
 int main(int argc, char *argv[]) {
 
-	int a = 3;
-	int b = 5;
+	int i;
+	int grade[5];
+	int sum = 0;
+	int *ptr;
 
-	#if 1
-	swap(&a, &b);
-	#else	
-	swap(a, b);
-	#endif
-	
-	printf("a : %i, b : %i\n", a, b);
+	ptr = grade;
+
+	for(i=0; i<5; i++)
+	{
+		printf("input value (%d) : ", i);
+		scanf("%d", &grade[i]);
+	}
+
+	for(i=0; i<5; i++)
+	{	
+		printf("grade[%d] = %d\n", i, grade[i]);
+		sum += *(ptr+i);
+	}
+
+	printf("average : %d\n", sum/5);
 	
 	return 0;
 }
+
 
